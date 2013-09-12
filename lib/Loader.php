@@ -4,7 +4,6 @@
 class Loader {
 
     private static $controller;
-    private static $models = array();
 
     public static function init() {
         self::loadController();
@@ -24,6 +23,7 @@ class Loader {
         require_once('app/controller/' . $fullName . '.php');
         self::$controller = new $fullName();
         self::$controller->name = $fullName;
+        self::$controller->request = new Request();
 
         // load the according model
         self::load('model', $name);
@@ -36,11 +36,6 @@ class Loader {
 
     private static function loadModel($name) {
         $name = Inflector::capitalize($name);
-
-        // don't load models multiple times
-        if(!empty(self::$models[$name]))
-           return false;
-
         require_once('app/models/' . $name . '.php');
     }
 

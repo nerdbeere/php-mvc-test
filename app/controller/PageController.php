@@ -16,4 +16,16 @@ class PageController extends Controller {
         $this->response = Page::getAll();
     }
 
+    public function create() {
+
+    }
+
+    public function edit() {
+
+    }
+
+    public function delete() {
+
+    }
+
 } 
